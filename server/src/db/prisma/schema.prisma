@@ -1,0 +1,198 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Contracts {
+  EmployeeId         Int
+  ContractExpiration DateTime  @db.Date
+  SalaryPerMonth     Float     @db.Money
+  SalaryBonuses      Float     @db.Money
+  ContractId         Int       @id(map: "PK_ContractId")
+  ContractSign       DateTime  @db.Date
+  Finances           Finances  @relation(fields: [ContractId], references: [DocumentId], onUpdate: NoAction, map: "FK_ContractId")
+  Employees          Employees @relation(fields: [EmployeeId], references: [Id], onUpdate: NoAction, map: "FK_EmployeeSalary")
+}
+
+model Employees {
+  Id        Int         @id(map: "PK_Employees") @default(autoincrement())
+  Name      String      @db.NVarChar(50)
+  Surname   String      @db.NVarChar(50)
+  Status    String      @db.NVarChar(50)
+  Age       Int         @db.TinyInt
+  BirthDate DateTime    @db.Date
+  Country   String?     @db.NVarChar(50)
+  Contracts Contracts[]
+  Squad     Squad?
+  Trainers  Trainers?
+  Transfers Transfers?
+}
+
+model Finances {
+  Description   String?      @db.NVarChar(200)
+  Budget        Float        @db.Money
+  OperationDate DateTime?    @db.Date
+  DocumentId    Int          @id(map: "PK_DocumentId")
+  OperationType Int?
+  FinanceType   FinanceType? @relation(fields: [OperationType], references: [TypeId], onDelete: NoAction, onUpdate: NoAction, map: "FK_OperationType")
+  Contracts     Contracts?
+  Results       Results[]
+
+  @@index([OperationType, Description, Budget, OperationDate], map: "nc_finance")
+  @@index([OperationType], map: "ncnc_finance")
+}
+
+model FinanceType {
+  Name     String     @db.NVarChar(20)
+  TypeId   Int        @id(map: "PK__FinanceT__516F03B53CFEA88D")
+  Finances Finances[]
+
+  @@index([Name], map: "nc_financeType")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model General {
+  name                String?   @db.NVarChar(50)
+  surname             String?   @db.NVarChar(50)
+  status              String?   @db.NVarChar(50)
+  age                 Int?      @db.TinyInt
+  country             String?   @db.NVarChar(50)
+  shirt_name          String?   @db.NVarChar(20)
+  shirt_number        Int?      @db.TinyInt
+  position            String?   @db.NVarChar(5)
+  games               Int?      @db.TinyInt
+  goals               Int?      @db.TinyInt
+  assists             Int?      @db.TinyInt
+  cleen_sheets        Int?
+  type                String?   @db.NVarChar(50)
+  transfer_date       DateTime? @db.Date
+  signed_from         String?   @db.NVarChar(50)
+  transfer_sum        Float?    @db.Money
+  contract_expiration DateTime? @db.Date
+  salary_per_month    Float?    @db.Money
+  salary_bonuses      Float?    @db.Money
+  contract_sign       DateTime? @db.Date
+  description         String?   @db.NVarChar(200)
+  budget              Float?    @db.Money
+  operation_date      DateTime? @db.Date
+  operation_type      Int?
+  finance_name        String?   @db.NVarChar(20)
+  place               Int?      @db.TinyInt
+  income              Float?    @db.Money
+  television_rights   Float?    @db.Money
+  start_prize         Float?    @db.Money
+  result_prize        Float?    @db.Money
+  match_date          DateTime? @db.Date
+  tour                String?   @db.NVarChar(5)
+  tournament          String?   @db.NVarChar(50)
+  at_home             Boolean?
+  opponent            String?   @db.NVarChar(50)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model GeneralInfo {
+  name                String?   @db.NVarChar(50)
+  surname             String?   @db.NVarChar(50)
+  status              String?   @db.NVarChar(50)
+  age                 Int?      @db.TinyInt
+  birthdate           DateTime? @db.Date
+  country             String?   @db.NVarChar(50)
+  shirt_name          String?   @db.NVarChar(20)
+  shirt_number        Int?      @db.TinyInt
+  position            String?   @db.NVarChar(5)
+  games               Int?      @db.TinyInt
+  goals               Int?      @db.TinyInt
+  assists             Int?      @db.TinyInt
+  cleen_sheets        Int?
+  type                String?   @db.NVarChar(50)
+  transfer_date       DateTime? @db.Date
+  signed_from         String?   @db.NVarChar(50)
+  transfer_sum        Float?    @db.Money
+  contract_expiration DateTime? @db.Date
+  salary_per_month    Float?    @db.Money
+  salary_bonuses      Float?    @db.Money
+  contract_sign       DateTime? @db.Date
+  description         String?   @db.NVarChar(200)
+  budget              Float?    @db.Money
+  operation_date      DateTime? @db.Date
+  operation_type      Int?
+  finance_name        String?   @db.NVarChar(20)
+  place               Int?      @db.TinyInt
+  income              Float?    @db.Money
+  television_rights   Float?    @db.Money
+  start_prize         Float?    @db.Money
+  result_prize        Float?    @db.Money
+  match_date          DateTime? @db.Date
+  tour                String?   @db.NVarChar(5)
+  tournament          String?   @db.NVarChar(50)
+  at_home             Boolean?
+  opponent            String?   @db.NVarChar(50)
+
+  @@ignore
+}
+
+model Matches {
+  MatchDate  DateTime @id(map: "PK_MatchDate") @db.Date
+  Tour       String?  @db.NVarChar(5)
+  Tournament String   @db.NVarChar(50)
+  AtHome     Boolean?
+  Opponent   String   @db.NVarChar(50)
+  Results    Results  @relation(fields: [Tournament], references: [Tournament], onUpdate: NoAction, map: "FK_Tournament")
+}
+
+model Results {
+  Tournament       String    @id(map: "PK__Tournament") @db.NVarChar(50)
+  Place            Int?      @db.TinyInt
+  Income           Float?    @db.Money
+  IncomeId         Int
+  TelevisionRights Float?    @db.Money
+  StartPrize       Float?    @db.Money
+  ResultPrize      Float?    @db.Money
+  Finances         Finances  @relation(fields: [IncomeId], references: [DocumentId], onUpdate: NoAction, map: "FK_IncomeId")
+  Matches          Matches[]
+}
+
+model Squad {
+  Position    String    @db.NVarChar(5)
+  Games       Int       @db.TinyInt
+  Goals       Int       @db.TinyInt
+  Assists     Int       @db.TinyInt
+  ShirtNumber Int       @db.TinyInt
+  Id          Int       @id(map: "PK_FootballerId")
+  ShirtName   String?   @db.NVarChar(20)
+  CleenSheets Int?
+  Employees   Employees @relation(fields: [Id], references: [Id], onUpdate: NoAction, map: "FK_FootballerId")
+}
+
+model sysdiagrams {
+  name         String @db.NVarChar(128)
+  principal_id Int
+  diagram_id   Int    @id(map: "PK__sysdiagr__C2B05B615D61C7FF") @default(autoincrement())
+  version      Int?
+  definition   Bytes?
+
+  @@unique([principal_id, name], map: "UK_principal_name")
+}
+
+model Trainers {
+  Id        Int       @id(map: "PK_TrainerId")
+  Name      String    @db.NVarChar(50)
+  Surname   String    @db.NVarChar(50)
+  Age       Int?      @db.TinyInt
+  Type      String    @db.NVarChar(50)
+  Employees Employees @relation(fields: [Id], references: [Id], onUpdate: NoAction, map: "FK_TrainerId")
+}
+
+model Transfers {
+  Id           Int       @id(map: "PK_Transfers")
+  TransferDate DateTime? @db.Date
+  SignedFrom   String?   @db.NVarChar(50)
+  TransferSum  Float?    @db.Money
+  Employees    Employees @relation(fields: [Id], references: [Id], onUpdate: NoAction, map: "FK_PlayerTransfer")
+}

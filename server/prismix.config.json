@@ -1,0 +1,19 @@
+{
+    "mixers": [
+      {
+          "input": [
+            "./src/models/Contracts.prisma",
+            "./src/models/Employees.prisma",
+            "./src/models/Finances.prisma",
+            "./src/models/FinanceType.prisma",
+            "./src/models/Matches.prisma",
+            "./src/models/Results.prisma",
+            "./src/models/Squad.prisma",
+            "./src/models/Trainers.prisma",
+            "./src/models/Transfers.prisma"
+          ],
+          "output": "./src/db/prisma/prismix_schema.prisma"
+      }
+    ]
+  }
+  

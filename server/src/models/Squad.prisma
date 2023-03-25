@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Squad {
+	Position    String    @db.NVarChar(5)
+	Games       Int       @db.TinyInt
+	Goals       Int       @db.TinyInt
+	Assists     Int       @db.TinyInt
+	ShirtNumber Int       @db.TinyInt
+	Id          Int       @id
+	ShirtName   String?   @db.NVarChar(20)
+	CleenSheets Int?
+	Employees   Employees @relation(fields: [Id], references: [Id], onUpdate: NoAction)
+}
+
+model Employees {
+	Id        Int         @id
+	Squad     Squad?
+}

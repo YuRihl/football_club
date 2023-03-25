@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg preserveAspectRatio="none" viewBox="0 0 480 250" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>MC 480x225</title>
+    <g id="MC-480x225" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="MC_Pitch_Final">
+            <rect id="Pitch-Background" fill="#376711" fill-rule="nonzero" x="0" y="0" width="480" height="250"></rect>
+            <g id="Stripes" fill="#33620E" fill-rule="nonzero">
+                <rect id="Rectangle" x="0" y="0" width="40" height="250"></rect>
+                <rect id="Rectangle-Copy-4" x="240" y="0" width="40" height="249.324324"></rect>
+                <rect id="Rectangle-Copy-2" x="80" y="0" width="40" height="250"></rect>
+                <rect id="Rectangle-Copy-5" x="320" y="0" width="40" height="250"></rect>
+                <rect id="Rectangle-Copy-3" x="160" y="0" width="40" height="250"></rect>
+                <rect id="Rectangle-Copy-6" x="400" y="0" width="40" height="250"></rect>
+            </g>
+            <ellipse id="Centre-Circle" stroke="#687D58" fill-opacity="0" fill="#2C4815" fill-rule="nonzero" cx="240" cy="125" rx="30" ry="30.4054054"></ellipse>
+            <ellipse id="Oval" fill="#687D58" fill-rule="nonzero" cx="240.333333" cy="125.337838" rx="2.33333333" ry="2.36486486"></ellipse>
+            <g id="Home-Goal-Lines" transform="translate(0.000000, 70.945946)" stroke="#687D58">
+                <g id="Group" transform="translate(40.000000, 36.486486)" fill="#2C4815" fill-opacity="0" fill-rule="nonzero">
+                    <path d="M0.22010202,0.0272296486 L0.263713173,35.1033154 C4.16417671,34.8356874 7.666974,32.8962874 10.2389051,29.9147176 C12.9804461,26.7365236 14.6666667,22.3755076 14.6666667,17.5667322 C14.6666667,12.7489575 12.9741287,8.3806102 10.2234999,5.20091322 C7.64341027,2.21835766 4.1302596,0.282846243 0.22010202,0.0272296486 Z" id="Combined-Shape"></path>
+                </g>
+                <polyline id="Path-3" points="0 33.7837838 13.3333333 33.7837838 13.3333333 74.3243243 0 74.3243243"></polyline>
+                <polyline id="Path-3" points="0 0 40 0 40 108.108108 0 108.108108"></polyline>
+            </g>
+            <g id="Away-Goal-Lines" transform="translate(452.833333, 124.554054) scale(-1, 1) rotate(-180.000000) translate(-452.833333, -124.554054) translate(425.333333, 70.054054)" stroke="#687D58">
+                <polyline id="Path-3" transform="translate(34.666667, 54.054054) rotate(-180.000000) translate(-34.666667, -54.054054) " points="14.6666667 0 54.6666667 0 54.6666667 108.108108 14.6666667 108.108108"></polyline>
+                <polyline id="Path-3" transform="translate(48.000000, 54.054054) rotate(-180.000000) translate(-48.000000, -54.054054) " points="41.3333333 33.7837838 54.6666667 33.7837838 54.6666667 74.3243243 41.3333333 74.3243243"></polyline>
+                <path d="M0.21084714,36.5030128 L-1.18423789e-15,71.5947233 C3.95882549,71.3992902 7.52390577,69.4827206 10.1445874,66.4944754 C12.9392693,63.3078257 14.6624952,58.9040999 14.6624952,54.0428467 C14.6624952,49.225072 12.9699573,44.8567247 10.2193285,41.6770278 C7.63812077,38.6931797 4.12304325,36.7572835 0.21084714,36.5030128 Z" id="Combined-Shape" fill-opacity="0" fill="#2C4815" fill-rule="nonzero" transform="translate(7.331248, 54.048868) rotate(-180.000000) translate(-7.331248, -54.048868) "></path>
+            </g>
+            <line x1="240.333333" y1="0.675675676" x2="240.333333" y2="249.324324" id="Line-10" stroke="#687D58" stroke-linecap="square"></line>
+        </g>
+    </g>
+</svg>

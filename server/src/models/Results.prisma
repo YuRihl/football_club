@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Results {
+    Tournament       String   @id @db.NVarChar(50)
+    Place            Int?     @db.TinyInt
+    Income           Float?   @db.Money
+    IncomeId         Int
+    TelevisionRights Float?   @db.Money
+    StartPrize       Float?   @db.Money
+    ResultPrize      Float?   @db.Money
+    Finances         Finances @relation(fields: [IncomeId], references: [DocumentId], onUpdate: NoAction)
+}
+
+model Finances {
+    DocumentId Int       @id
+    Results    Results[]
+}

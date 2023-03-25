@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Matches {
+    MatchDate  DateTime @id @db.Date
+    Tour       String?  @db.NVarChar(5)
+    Tournament String   @db.NVarChar(50)
+    AtHome     Boolean?
+    Opponent   String   @db.NVarChar(50)
+    Results    Results  @relation(fields: [Tournament], references: [Tournament], onUpdate: NoAction)
+}
+
+model Results {
+    Tournament String    @id
+    Matches    Matches[]
+}

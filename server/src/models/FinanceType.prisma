@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model FinanceType {
+    Name     String     @db.NVarChar(20)
+    TypeId   Int        @id
+
+    @@index([Name], map: "nc_financeType")
+}

@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Contracts {
+  EmployeeId         Int
+  ContractExpiration DateTime  @db.Date
+  SalaryPerMonth     Float     @db.Money
+  SalaryBonuses      Float     @db.Money
+  ContractId         Int       @id
+  ContractSign       DateTime  @db.Date
+  Finances           Finances  @relation(fields: [ContractId], references: [DocumentId], onUpdate: NoAction)
+  Employees          Employees @relation(fields: [EmployeeId], references: [Id], onUpdate: NoAction)
+}
+
+model Finances {
+    DocumentId    Int         @id
+    Contracts     Contracts?
+}
+
+model Employees {
+    Id        Int         @id
+    Contracts Contracts[]
+}

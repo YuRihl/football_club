@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Finances {
+    Description   String?      @db.NVarChar(200)
+    Budget        Float        @db.Money
+    OperationDate DateTime?    @db.Date
+    DocumentId    Int          @id
+    OperationType Int?
+    FinanceType   FinanceType? @relation(fields: [OperationType], references: [TypeId], onDelete: NoAction)
+
+    @@index([OperationType, Description, Budget, OperationDate])
+    @@index([OperationType])
+}
+
+model FinanceType {
+	TypeId   Int        @id
+    Finances Finances[]
+}

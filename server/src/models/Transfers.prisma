@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Transfers {
+    Id           Int
+    TransferDate DateTime? @db.Date
+    SignedFrom   String?   @db.NVarChar(50)
+    TransferSum  Float?    @db.Money
+    Employees    Employees @relation(fields: [Id], references: [Id], onUpdate: NoAction)
+
+    @@ignore
+}
+
+model Employees {
+    Id        Int         @id
+    Transfers Transfers[] @ignore
+}

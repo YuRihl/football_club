@@ -1,0 +1,29 @@
+{
+  "name": "football_club_backend",
+  "version": "1.0.0",
+  "description": "Coursework",
+  "main": "./src/index.js",
+  "type": "module",
+  "prisma": {
+    "schema": "./src/db/prisma/schema.prisma"
+  },
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^3.14.0",
+    "config": "^3.3.7",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16",
+    "tedious": "^14.5.0"
+  },
+  "devDependencies": {
+    "prisma": "^3.14.0",
+    "prismix": "^1.0.21"
+  }
+}

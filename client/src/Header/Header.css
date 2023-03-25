@@ -1,0 +1,14 @@
+.nav-link,
+.navbar-brand {
+    color: #fdb913 !important;
+}
+
+.navbar {
+    background-color: black !important;
+    padding: 0 !important;
+}
+
+.active {
+    background-color: rgb(49, 46, 46);
+    color: #e9b669 !important;
+}
